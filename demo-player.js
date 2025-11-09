@@ -4,6 +4,7 @@
 // Configuration - DEMO: Interval at 30 seconds instead of 30:33
 const INTERVAL_START_TIME = 30; // 30 seconds for demo (production: 30 * 60 + 33)
 const INTERVAL_DURATION = 60; // 60 seconds for demo (production: 10 * 60)
+const KIOSK_MODE = true; // Enable kiosk mode features
 
 // DOM Elements
 const introScreen = document.getElementById('intro-screen');
@@ -18,17 +19,36 @@ let intervalShown = false;
 let intervalStartTimestamp = null;
 let intervalCountdown = null;
 
+// Kiosk mode: Auto-enter fullscreen on load
+if (KIOSK_MODE) {
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    console.log('Fullscreen request failed:', err);
+                });
+            }
+        }, 1000);
+    });
+}
+
 // Event Listeners
 startButton.addEventListener('click', startScreening);
 videoPlayer.addEventListener('timeupdate', checkForInterval);
 
 /**
- * Start the screening - hide intro and show video player
+ * Start the screening - hide intro and show video player with smooth transition
  */
 function startScreening() {
-    introScreen.classList.remove('active');
-    playerScreen.classList.add('active');
-    videoPlayer.play();
+    // Add fade-out animation to intro screen
+    introScreen.classList.add('fade-out');
+    
+    // Wait for fade-out animation to complete before switching screens
+    setTimeout(() => {
+        introScreen.classList.remove('active', 'fade-out');
+        playerScreen.classList.add('active');
+        videoPlayer.play();
+    }, 1000);
 }
 
 /**
@@ -116,6 +136,20 @@ function formatTime(seconds) {
 
 // Keyboard controls for testing
 document.addEventListener('keydown', (e) => {
+    // In kiosk mode, disable certain keys to prevent exiting
+    if (KIOSK_MODE) {
+        // Prevent escape key
+        if (e.key === 'Escape') {
+            e.preventDefault();
+            return;
+        }
+        // Prevent Alt+F4, Ctrl+W, etc.
+        if ((e.altKey && e.key === 'F4') || (e.ctrlKey && e.key === 'w')) {
+            e.preventDefault();
+            return;
+        }
+    }
+    
     // Press 'I' to toggle interval (for testing)
     if (e.key === 'i' || e.key === 'I') {
         if (intervalOverlay.classList.contains('active')) {
@@ -144,6 +178,14 @@ document.addEventListener('keydown', (e) => {
         }
     }
 });
+
+// Prevent context menu in kiosk mode
+if (KIOSK_MODE) {
+    document.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+        return false;
+    });
+}
 
 // Log video metadata when loaded
 videoPlayer.addEventListener('loadedmetadata', () => {
