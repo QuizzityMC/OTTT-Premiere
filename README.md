@@ -1,7 +1,7 @@
 # OTTT-Premiere
 The video premiere and cinema experience player for the film Premiere of "On Track to Terror"
 
-![Intro Screen](https://github.com/user-attachments/assets/99e3c0b8-c88a-4a53-bc3e-835aca671ec9)
+![Intro Screen](screenshots/intro-screen.png)
 
 ## Features
 
@@ -23,15 +23,15 @@ The video premiere and cinema experience player for the film Premiere of "On Tra
 ## Screenshots
 
 ### Intro Screen
-![Intro Screen](https://github.com/user-attachments/assets/99e3c0b8-c88a-4a53-bc3e-835aca671ec9)
+![Intro Screen](screenshots/intro-screen.png)
 *Welcome screen with animated title, premiere information, and cinema etiquette reminders*
 
 ### Video Player
-![Video Player](https://github.com/user-attachments/assets/3f6237d9-8a98-4f28-9466-90068577a7b4)
+![Video Player](screenshots/player-screen.png)
 *Full-screen video player with HTML5 controls*
 
 ### Interval Screen
-![Interval Screen](https://github.com/user-attachments/assets/810a5697-302b-4e3a-964d-76a4297a3192)
+![Interval Screen](screenshots/interval-screen.png)
 *Automated interval with countdown timer and film information*
 
 ## Setup
