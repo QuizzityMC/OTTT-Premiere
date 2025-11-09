@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>On Track to Terror - Premiere (Demo)</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Intro Screen -->
+    <div id="intro-screen" class="screen active">
+        <div class="content">
+            <h1>Canary Films Presents</h1>
+            <h2>On Track to Terror</h2>
+            <p class="premiere-text">World Premiere - First Showing</p>
+            <div class="notices">
+                <p>📱 Please ensure all mobile phones are on silent</p>
+                <p>🎬 This film is 1 hour and 18 minutes long</p>
+                <p>⏸️ There will be a 10-minute interval at approximately 30 minutes</p>
+            </div>
+            <button id="start-button" class="primary-button">Begin Screening</button>
+        </div>
+    </div>
+
+    <!-- Video Player Screen -->
+    <div id="player-screen" class="screen">
+        <video id="video-player" controls>
+            <!-- Using Big Buck Bunny as a demo video (open source, ~10 minutes) -->
+            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div id="interval-overlay" class="overlay">
+            <div class="content">
+                <h2>Interval</h2>
+                <p>Please feel free to stretch your legs</p>
+                <p>The film will resume in <span id="interval-timer">10:00</span></p>
+                <div class="interval-info">
+                    <p>Canary Films Production</p>
+                    <p>"On Track to Terror"</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="demo-player.js"></script>
+</body>
+</html>
